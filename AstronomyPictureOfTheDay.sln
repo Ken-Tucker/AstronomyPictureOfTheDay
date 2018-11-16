@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstronomyPictureOfTheDay", "AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj", "{3EAECD48-CB4D-43A2-97C3-490704E7D473}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstronomyPictureOfTheDay.Tests", "AstronomyPictureOfTheDay.Tests\AstronomyPictureOfTheDay.Tests.csproj", "{0D7B7684-8182-484A-99BF-9A8946A8C1EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EAECD48-CB4D-43A2-97C3-490704E7D473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EAECD48-CB4D-43A2-97C3-490704E7D473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EAECD48-CB4D-43A2-97C3-490704E7D473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EAECD48-CB4D-43A2-97C3-490704E7D473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D7B7684-8182-484A-99BF-9A8946A8C1EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D7B7684-8182-484A-99BF-9A8946A8C1EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D7B7684-8182-484A-99BF-9A8946A8C1EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D7B7684-8182-484A-99BF-9A8946A8C1EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
