@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstronomyPictureOfTheDay", "AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj", "{3EAECD48-CB4D-43A2-97C3-490704E7D473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstronomyPictureOfTheDay.Tests", "AstronomyPictureOfTheDay.Tests\AstronomyPictureOfTheDay.Tests.csproj", "{5E6E88F9-0EC5-4DE6-8CD6-367D35033EB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstronomyPictureOfTheDay.Tests", "AstronomyPictureOfTheDay.Tests\AstronomyPictureOfTheDay.Tests.csproj", "{246765B1-7A32-41FE-8BBD-E0D413A7DE09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,9 @@ Global
 		{3EAECD48-CB4D-43A2-97C3-490704E7D473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EAECD48-CB4D-43A2-97C3-490704E7D473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EAECD48-CB4D-43A2-97C3-490704E7D473}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E6E88F9-0EC5-4DE6-8CD6-367D35033EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E6E88F9-0EC5-4DE6-8CD6-367D35033EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E6E88F9-0EC5-4DE6-8CD6-367D35033EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E6E88F9-0EC5-4DE6-8CD6-367D35033EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{246765B1-7A32-41FE-8BBD-E0D413A7DE09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{246765B1-7A32-41FE-8BBD-E0D413A7DE09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{246765B1-7A32-41FE-8BBD-E0D413A7DE09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{246765B1-7A32-41FE-8BBD-E0D413A7DE09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
