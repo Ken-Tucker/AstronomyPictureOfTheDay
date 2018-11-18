@@ -12,7 +12,7 @@ namespace AstronomyPictureOfTheDay
 
         private static HttpClient client = new HttpClient();
 
-        public async Task<string> GetAPODJson(string apiKey)
+        public async Task<string> GetAPODJsonAsync(string apiKey)
         {
             string url = $"https://api.nasa.gov/planetary/apod?api_key={apiKey}";
             string json = string.Empty;

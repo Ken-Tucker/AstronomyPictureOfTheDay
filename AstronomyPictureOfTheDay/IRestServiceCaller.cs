@@ -4,6 +4,6 @@ namespace AstronomyPictureOfTheDay
 {
     public interface IRestServiceCaller
     {
-        Task<string> GetAPODJson(string apiKey);
+        Task<string> GetAPODJsonAsync(string apiKey);
     }
 }

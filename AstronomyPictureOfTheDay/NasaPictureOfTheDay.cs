@@ -4,7 +4,7 @@ using AstronomyPictureOfTheDay.Entities;
 
 namespace AstronomyPictureOfTheDay
 {
-    public class NasaPictureOfTheDay
+   public class NasaPictureOfTheDay
     {
         IRestServiceCaller restServiceCaller = new RestServiceCaller();
 
@@ -17,12 +17,12 @@ namespace AstronomyPictureOfTheDay
             restServiceCaller = restService;
         }
 
-        public async Task<PictureOfTheDayResponse> GetTodaysPicture(string apiKey)
+        public async Task<PictureOfTheDayResponse> GetTodaysPictureAsync(string apiKey)
         {
             PictureOfTheDayResponse response = new PictureOfTheDayResponse();
             try
             {
-                string json = await restServiceCaller.GetAPODJson(apiKey);
+                string json = await restServiceCaller.GetAPODJsonAsync(apiKey);
                 response.pictureOfTheDay = Newtonsoft.Json.JsonConvert.DeserializeObject<PictureOfTheDay>(json);
                 response.Success = true;
             }
