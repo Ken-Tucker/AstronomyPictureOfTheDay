@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AstronomyPictureOfTheDay.Tests
 {
-    [TestFixture()]
+    [TestFixture]
     public class Test
     {
         string key = "testing";
