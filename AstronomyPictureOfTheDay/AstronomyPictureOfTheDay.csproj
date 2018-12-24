@@ -17,6 +17,12 @@
         </Command>
       </CustomCommands>
     </CustomCommands>
+    <LangVersion>7.3</LangVersion>
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>7.3</LangVersion>
+    <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Class1.cs" />
