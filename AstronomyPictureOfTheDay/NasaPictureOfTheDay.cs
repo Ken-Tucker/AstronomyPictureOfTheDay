@@ -34,5 +34,23 @@ namespace AstronomyPictureOfTheDay
 
             return response;
         }
+
+        public async Task<MarsPictureResponse> GetMarsPictureAsync(RoverEnum rover, DateTime earthDate,string apiKey)
+        {
+            MarsPictureResponse response = new MarsPictureResponse();
+            try
+            {
+                string json = await restServiceCaller.GetMarsPictureJsonAsync(rover.ToString(), earthDate, apiKey);
+                response.picturesFromMars = Newtonsoft.Json.JsonConvert.DeserializeObject<MarsPictures>(json);
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.exception = ex;
+            }
+
+            return response;
+        }
     }
 }
