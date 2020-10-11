@@ -18,7 +18,7 @@ variables:
 
    
  
-steps:
+steps: build
 - task: NuGetToolInstaller@0
   displayName: 'Use NuGet 4.9.1'
   inputs:
