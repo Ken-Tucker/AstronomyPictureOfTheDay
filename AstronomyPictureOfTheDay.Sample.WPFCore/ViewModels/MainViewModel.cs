@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using AstronomyPictureOfTheDay.Entities;
@@ -25,6 +26,8 @@ namespace AstronomyPictureOfTheDay.Sample.WPFCore.ViewModels
                 NotifyOfPropertyChange();
             }
         }
+
+
 
         private string _picOfDay;
 
@@ -54,7 +57,7 @@ namespace AstronomyPictureOfTheDay.Sample.WPFCore.ViewModels
                     if (response.Success)
                     {
                         Title = response.pictureOfTheDay.title;
-                        PictureOfDay=response.pictureOfTheDay.url;
+                        PictureOfDay = response.pictureOfTheDay.url;
                     }
                 }
 
