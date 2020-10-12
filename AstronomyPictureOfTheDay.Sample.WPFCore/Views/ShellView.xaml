@@ -1,0 +1,39 @@
+﻿<Page x:Class="AstronomyPictureOfTheDay.Sample.WPFCore.Views.ShellView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AstronomyPictureOfTheDay.Sample.WPFCore.Views"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:cal="http://www.caliburnproject.org"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Height="450" Width="800"
+      Title="ShellView">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
+            <Button Content="Astronomy Picture of the day" Margin="10" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ShowAstronomyPicture"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            <Button Content="Mars Curiosity Picture" Margin="10" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="ShowMarsPicture"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
+
+        <ContentControl x:Name="ActiveItem" Grid.Row="1" HorizontalAlignment="Stretch"/>
+    </Grid>
+</Page>

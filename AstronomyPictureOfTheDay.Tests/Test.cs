@@ -1,23 +1,22 @@
 ﻿using AstronomyPictureOfTheDay.Entities;
 using FakeItEasy;
-using NUnit.Framework;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace AstronomyPictureOfTheDay.Tests
 {
-    [TestFixture]
     public class Test
     {
         string key = "testing";
-        [Test]
+        [Fact]
         public void TestMethod1()
         {
-            Assert.AreEqual(1, 1);
+            Assert.Equal(1, 1);
         }
 
-        [Test]
+        [Fact]
         public void TestExceptionReturnFalse()
         {
             var rest = A.Fake<IRestServiceCaller>();
@@ -29,11 +28,11 @@ namespace AstronomyPictureOfTheDay.Tests
             var results = nasa.GetTodaysPictureAsync(key).Result;
 
 
-            Assert.AreEqual(results.Success, false);
-            Assert.IsNotNull(results.exception);
+            Assert.False( results.Success);
+            Assert.NotNull(results.exception);
         }
 
-        [Test]
+        [Fact]
         public void TestGetResults()
         {
             var rest = A.Fake<IRestServiceCaller>();
@@ -47,8 +46,8 @@ namespace AstronomyPictureOfTheDay.Tests
 
             Task.Run(async () => { results = await nasa.GetTodaysPictureAsync(key); }).Wait();
 
-            Assert.AreEqual(results.Success, true);
-            Assert.IsNotNull(results.pictureOfTheDay);
+            Assert.True(results.Success);
+            Assert.NotNull(results.pictureOfTheDay);
         }
     }
 }

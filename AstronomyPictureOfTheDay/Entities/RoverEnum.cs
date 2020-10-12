@@ -7,7 +7,6 @@ namespace AstronomyPictureOfTheDay.Entities
     public enum RoverEnum
     {
         Curiosity, 
-        Opportunity, 
-        Spirit
+        Opportunity
     }
 }
