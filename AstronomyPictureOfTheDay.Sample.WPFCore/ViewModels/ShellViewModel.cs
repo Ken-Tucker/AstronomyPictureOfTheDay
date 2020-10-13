@@ -24,17 +24,18 @@ namespace AstronomyPictureOfTheDay.Sample.WPFCore.ViewModels
         {
             Message = "Hello World";
 
-            ActivateItem(new MainViewModel());
+            Task.Run(async () => { await ActivateItemAsync(new MainViewModel()); });
+            Task.WaitAll();
         }
 
-        public void ShowAstronomyPicture()
+        public async void ShowAstronomyPicture()
         {
-            ChangeActiveItem(new MainViewModel(), true);
+           await ChangeActiveItemAsync(new MainViewModel(), true);
         }
 
-        public void ShowMarsPicture()
+        public async void ShowMarsPicture()
         {
-            ChangeActiveItem(new MarsViewModel(), true);
+            await ChangeActiveItemAsync(new MarsViewModel(), true);
         }
     }
 }

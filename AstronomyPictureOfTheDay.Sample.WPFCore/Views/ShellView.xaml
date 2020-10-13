@@ -4,8 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AstronomyPictureOfTheDay.Sample.WPFCore.Views"
-      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:cal="http://www.caliburnproject.org"
+      xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="800"
       Height="450" Width="800"
@@ -19,18 +19,18 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
             <Button Content="Astronomy Picture of the day" Margin="10" >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
                         <cal:ActionMessage MethodName="ShowAstronomyPicture"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
             </Button>
             <Button Content="Mars Curiosity Picture" Margin="10" >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
                         <cal:ActionMessage MethodName="ShowMarsPicture"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
             </Button>
         </StackPanel>
 
