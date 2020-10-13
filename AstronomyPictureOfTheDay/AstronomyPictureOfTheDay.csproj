@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
-    <PackageId>AstromyPictureTheDay</PackageId>
-    <PackageVersion>0.8</PackageVersion>
+    <PackageId>AstronomyPictureTheDay</PackageId>
+    <PackageVersion>0.9</PackageVersion>
     <Authors>Ken Tucker</Authors>
-    <Description>Class for calling the nasa Astromy Picture of the Day web service</Description>
+    <Description>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
