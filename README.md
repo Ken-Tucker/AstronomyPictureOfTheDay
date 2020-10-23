@@ -45,5 +45,6 @@ PANCAM	Panoramic Camera
 
 MINITES	Miniature Thermal Emission Spectrometer (Mini-TES)		
 
+# Example app
 
 A WPF example is included in the source code
