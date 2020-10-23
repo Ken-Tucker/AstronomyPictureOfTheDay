@@ -10,7 +10,7 @@ The library has 2 methods GetTodaysPictureAsync and GetMarsPictureAsync.  These 
 You will need an api key from the Nasa website to use the apis.  You can get a key at https://api.nasa.gov/
 
 
-#GetTodaysPictureAsync
+# GetTodaysPictureAsync
   Required parameters ApiKey which you get from the nasa web site
   
 This method will return an PictureOfTheDayResponse.  The Success property will tell you if the call was sucessful.   Exception property will return any exceptions when you try and get the daily picture.
@@ -18,7 +18,7 @@ This method will return an PictureOfTheDayResponse.  The Success property will t
 The PictureofTheDay property will include information about the picture like the title, and url of image.  
 
 
-#GetMarsPictureAsync 
+# GetMarsPictureAsync 
 
 This method requires ApiKey like the method above.
 You will need to select which Rover you would like a picture from.  
