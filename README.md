@@ -27,6 +27,7 @@ You will need to select the image date you would like see pictures for.
 The return list the above method.  The pictures returned fill be from the following list of available cameras on the rovers.
 
 Abbreviation	Camera
+
 FHAZ	Front Hazard Avoidance Camera
 
 RHAZ	Rear Hazard Avoidance Camera	
