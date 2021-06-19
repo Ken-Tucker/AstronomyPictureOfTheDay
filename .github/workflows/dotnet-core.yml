@@ -18,8 +18,15 @@ jobs:
       with:
         dotnet-version: 5.0.103
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore --source https://www.myget.org/F/caliburn-micro-builds/api/v3/index.json --source https://api.nuget.org/v3/index.json 
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Publish
+      run: dotnet publish --configuration Release
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: published_nuget
+        path: AstronomyPictureOfTheDay\bin\Release\AstronomyPictureTheDay.0.9.nupkg
