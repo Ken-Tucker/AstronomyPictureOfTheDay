@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
@@ -8,8 +8,8 @@
 		<PackageTags>Nasa, Mars, Astronomy</PackageTags>
 		<PackageReleaseNotes>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</PackageReleaseNotes>
 		<PackageLicenseUrl></PackageLicenseUrl>
-		<PackageProjectUrl>https://github.com/vb2ae/OpenWeatherMap.Standard/</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/vb2ae/OpenWeatherMap.standard</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/vb2ae/AstronomyPictureOfTheDay</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/vb2ae/AstronomyPictureOfTheDay</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<Authors>Ken Tucker</Authors>
 		<Description>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</Description>
