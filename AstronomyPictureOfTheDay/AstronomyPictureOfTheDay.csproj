@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
-		<PackOnBuild>true</PackOnBuild>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>AstronomyPictureTheDay</PackageId>
 		<PackageVersion>1.0</PackageVersion>
 		<PackageTags>Nasa, Mars, Astronomy</PackageTags>
@@ -11,6 +11,7 @@
 		<PackageProjectUrl>https://github.com/vb2ae/AstronomyPictureOfTheDay</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/vb2ae/AstronomyPictureOfTheDay</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
+		<PackOnBuild>true</PackOnBuild>
 		<Authors>Ken Tucker</Authors>
 		<Description>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</Description>
 		<AssemblyVersion>1.0.0</AssemblyVersion>
@@ -18,27 +19,15 @@
 		<Copyright>2021</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
-
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<CustomCommands>
-			<CustomCommands>
-				<Command>
-					<type>AfterBuild</type>
-				</Command>
-			</CustomCommands>
-		</CustomCommands>
-		<LangVersion>7.3</LangVersion>
-		<NoStdLib>false</NoStdLib>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<LangVersion>7.3</LangVersion>
-		<NoStdLib>false</NoStdLib>
-	</PropertyGroup>
+	
 	<ItemGroup>
 		<Compile Remove="Class1.cs" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 	</ItemGroup>
 </Project>
