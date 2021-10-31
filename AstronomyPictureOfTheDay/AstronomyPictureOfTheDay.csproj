@@ -4,7 +4,7 @@
 		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net5.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>AstronomyPictureTheDay</PackageId>
-		<PackageVersion>1.0</PackageVersion>
+		<PackageVersion>1.0.1</PackageVersion>
 		<PackageTags>Nasa, Mars, Astronomy</PackageTags>
 		<PackageReleaseNotes>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</PackageReleaseNotes>
 		<PackageLicenseUrl></PackageLicenseUrl>
@@ -14,8 +14,8 @@
 		<PackOnBuild>true</PackOnBuild>
 		<Authors>Ken Tucker</Authors>
 		<Description>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</Description>
-		<AssemblyVersion>1.0.0</AssemblyVersion>
-		<FileVersion>1.0.0</FileVersion>
+		<AssemblyVersion>1.0.1</AssemblyVersion>
+		<FileVersion>1.0.1</FileVersion>
 		<Copyright>2021</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
@@ -27,7 +27,7 @@
 	<ItemGroup>
 		<Compile Remove="Class1.cs" />
 	</ItemGroup>
-	<ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 	</ItemGroup>
 </Project>
