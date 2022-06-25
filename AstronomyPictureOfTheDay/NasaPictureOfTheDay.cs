@@ -23,7 +23,7 @@ namespace AstronomyPictureOfTheDay
             try
             {
                 string json = await restServiceCaller.GetAPODJsonAsync(apiKey);
-#if NETCOREAPP3_1 || NET5_0
+#if NETCOREAPP3_1 || NET6_0
                 response.pictureOfTheDay = System.Text.Json.JsonSerializer.Deserialize<PictureOfTheDay>(json);
 #else
                 response.pictureOfTheDay = Newtonsoft.Json.JsonConvert.DeserializeObject<PictureOfTheDay>(json);
@@ -45,7 +45,7 @@ namespace AstronomyPictureOfTheDay
             try
             {
                 string json = await restServiceCaller.GetMarsPictureJsonAsync(rover.ToString(), earthDate, apiKey);
-#if NETCOREAPP3_1 || NET5_0
+#if NETCOREAPP3_1 || NET6_0
                 response.picturesFromMars = System.Text.Json.JsonSerializer.Deserialize<MarsPictures>(json);
 #else
                 response.picturesFromMars = Newtonsoft.Json.JsonConvert.DeserializeObject<MarsPictures>(json);
