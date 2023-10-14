@@ -10,7 +10,7 @@ namespace AstronomyPictureOfTheDay
         {
         }
 
-        private static HttpClient client = new HttpClient();
+        private readonly static HttpClient client = new HttpClient();
 
         public async Task<string> GetAPODJsonAsync(string apiKey)
         {

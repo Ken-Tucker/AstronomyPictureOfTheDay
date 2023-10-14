@@ -1,14 +1,14 @@
-using System;
-using System.Threading.Tasks;
 using AstronomyPictureOfTheDay.Entities;
 using FakeItEasy;
+using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace AstronomyPictureOfTheDay.Xunit.Tests
 {
     public class UnitTest1
     {
-        string key = "testing";
+        readonly string key = "testing";
         [Fact]
         public void TestMethod1()
         {
