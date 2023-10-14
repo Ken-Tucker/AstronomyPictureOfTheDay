@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using AstronomyPictureOfTheDay.Entities;
+﻿using AstronomyPictureOfTheDay.Entities;
 using Caliburn.Micro;
+using System.Threading.Tasks;
 
 namespace AstronomyPictureOfTheDay.Sample.WPFCore.ViewModels
 {
@@ -52,13 +46,11 @@ namespace AstronomyPictureOfTheDay.Sample.WPFCore.ViewModels
             Task.Run(async () =>
             {
                 response = await apod.GetTodaysPictureAsync("DEMO_KEY");
-                if (response != null)
+                if (response != null && response.Success)
                 {
-                    if (response.Success)
-                    {
-                        Title = response.pictureOfTheDay.title;
-                        PictureOfDay = response.pictureOfTheDay.url;
-                    }
+
+                    Title = response.pictureOfTheDay.title;
+                    PictureOfDay = response.pictureOfTheDay.url;
                 }
 
             });

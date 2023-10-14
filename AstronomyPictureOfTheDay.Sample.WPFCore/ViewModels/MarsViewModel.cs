@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using AstronomyPictureOfTheDay.Entities;
+﻿using AstronomyPictureOfTheDay.Entities;
 using Caliburn.Micro;
+using System;
+using System.Threading.Tasks;
 
 namespace AstronomyPictureOfTheDay.Sample.WPFCore.ViewModels
 {
-    public class MarsViewModel:PropertyChangedBase
+    public class MarsViewModel : PropertyChangedBase
     {
         private string _title = "Loading image";
 
@@ -45,14 +43,11 @@ namespace AstronomyPictureOfTheDay.Sample.WPFCore.ViewModels
             MarsPictureResponse response = null;
             Task.Run(async () =>
             {
-                response = await marsPictureOfTheDay.GetMarsPictureAsync(RoverEnum.Curiosity, DateTime.Now.AddDays(-7),"DEMO_KEY");
-                if (response != null)
+                response = await marsPictureOfTheDay.GetMarsPictureAsync(RoverEnum.Curiosity, DateTime.Now.AddDays(-7), "DEMO_KEY");
+                if (response != null && response.Success)
                 {
-                    if (response.Success)
-                    {
-                        Title = response.picturesFromMars.photos[0].camera.full_name;
-                        PictureOfDay = response.picturesFromMars.photos[0].img_src;
-                    }
+                    Title = response.picturesFromMars.photos[0].camera.full_name;
+                    PictureOfDay = response.picturesFromMars.photos[0].img_src;
                 }
 
             });

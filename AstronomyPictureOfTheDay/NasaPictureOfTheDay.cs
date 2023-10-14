@@ -1,12 +1,12 @@
-﻿using System;
+﻿using AstronomyPictureOfTheDay.Entities;
+using System;
 using System.Threading.Tasks;
-using AstronomyPictureOfTheDay.Entities;
 
 namespace AstronomyPictureOfTheDay
 {
-   public class NasaPictureOfTheDay
+    public class NasaPictureOfTheDay
     {
-        IRestServiceCaller restServiceCaller = new RestServiceCaller();
+        readonly IRestServiceCaller restServiceCaller = new RestServiceCaller();
 
         public NasaPictureOfTheDay()
         {
@@ -30,7 +30,7 @@ namespace AstronomyPictureOfTheDay
 #endif
                 response.Success = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.Success = false;
                 response.exception = ex;
@@ -39,7 +39,7 @@ namespace AstronomyPictureOfTheDay
             return response;
         }
 
-        public async Task<MarsPictureResponse> GetMarsPictureAsync(RoverEnum rover, DateTime earthDate,string apiKey)
+        public async Task<MarsPictureResponse> GetMarsPictureAsync(RoverEnum rover, DateTime earthDate, string apiKey)
         {
             MarsPictureResponse response = new MarsPictureResponse();
             try
