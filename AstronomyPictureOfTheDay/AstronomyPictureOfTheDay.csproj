@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net8.0;net6.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>AstronomyPictureTheDay</PackageId>
-		<PackageVersion>1.1.0</PackageVersion>
+		<PackageVersion>2.0.0</PackageVersion>
 		<PackageTags>Nasa, Mars, Astronomy</PackageTags>
 		<PackageReleaseNotes>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</PackageReleaseNotes>
 		<PackageLicenseUrl></PackageLicenseUrl>
@@ -14,9 +14,9 @@
 		<PackOnBuild>true</PackOnBuild>
 		<Authors>Ken Tucker</Authors>
 		<Description>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</Description>
-		<AssemblyVersion>1.1.0</AssemblyVersion>
-		<FileVersion>1.1.0</FileVersion>
-		<Copyright>2022</Copyright>
+		<AssemblyVersion>2.0.0</AssemblyVersion>
+		<FileVersion>2.0.0</FileVersion>
+		<Copyright>2023</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 	
@@ -28,6 +28,12 @@
 		<Compile Remove="Class1.cs" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
 	</ItemGroup>
 </Project>
