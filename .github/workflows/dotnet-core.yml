@@ -12,7 +12,12 @@ jobs:
     runs-on: 'windows-2022'
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        # We must fetch at least the immediate parents so that if this is
+        # a pull request then we can checkout the head.
+        fetch-depth: 0
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v2
       with:
@@ -25,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
         name: published_nuget
-        path: AstronomyPictureOfTheDay\bin\Release\AstronomyPictureTheDay.2.0.0.nupkg
+        path: AstronomyPictureOfTheDay\bin\Release\
