@@ -43,7 +43,7 @@ namespace AstronomyPictureOfTheDay.Sample.WPFCore.ViewModels
             MarsPictureResponse response = null;
             Task.Run(async () =>
             {
-                response = await marsPictureOfTheDay.GetMarsPictureAsync(RoverEnum.Curiosity, DateTime.Now.AddDays(-7), "DEMO_KEY");
+                response = await marsPictureOfTheDay.GetMarsPictureAsync(RoverEnum.Curiosity, DateTime.Now.AddDays(-30), "DEMO_KEY");
                 if (response != null && response.Success)
                 {
                     Title = response.picturesFromMars.photos[0].camera.full_name;
