@@ -1,30 +1,26 @@
 using AstronomyPictureOfTheDay.Entities;
 using FakeItEasy;
-using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace AstronomyPictureOfTheDay.Xunit.Tests
 {
-    public class UnitTest1
+    public class NasaPictureOfDayTests
     {
         readonly string key = "testing";
-        [Fact]
-        public void TestMethod1()
-        {
-            Assert.Equal(1, 1);
-        }
+
 
         [Fact]
-        public void TestExceptionReturnFalse()
+        public async Task TestExceptionReturnFalse()
         {
             var rest = A.Fake<IRestServiceCaller>();
             A.CallTo(() => rest.GetAPODJsonAsync(key))
-                               .ThrowsAsync(new Exception(key));
+                               .ThrowsAsync(new HttpRequestException(key));
 
             NasaPictureOfTheDay nasa = new NasaPictureOfTheDay(rest);
 
-            var results = nasa.GetTodaysPictureAsync(key).Result;
+            var results = await nasa.GetTodaysPictureAsync(key);
 
 
             Assert.False(results.Success);
@@ -32,7 +28,7 @@ namespace AstronomyPictureOfTheDay.Xunit.Tests
         }
 
         [Fact]
-        public void TestGetResults()
+        public async Task TestGetResults()
         {
             var rest = A.Fake<IRestServiceCaller>();
             A.CallTo(() => rest.GetAPODJsonAsync(key))
@@ -43,7 +39,7 @@ namespace AstronomyPictureOfTheDay.Xunit.Tests
 
             PictureOfTheDayResponse results = null;
 
-            Task.Run(async () => { results = await nasa.GetTodaysPictureAsync(key); }).Wait();
+            results = await nasa.GetTodaysPictureAsync(key);
 
             Assert.True(results.Success);
             Assert.NotNull(results.pictureOfTheDay);
