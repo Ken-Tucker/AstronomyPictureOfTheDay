@@ -3,7 +3,8 @@ using Avalonia.Media.Imaging;
 using System;
 using System.Globalization;
 using System.IO;
-using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace AstronomyPictureOfTheDay.Sample.Avalonia.Converters
 {
@@ -16,27 +17,33 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.Converters
     {
         public static BitmapConverter Instance = new BitmapConverter();
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             if (value == null || string.IsNullOrEmpty(value.ToString()))
                 return null;
 
             if (value is string rawUri && targetType.IsAssignableFrom(typeof(Bitmap)))
             {
-                using (var client = new WebClient())
+                Bitmap? spaceImage = null;
+                var getImageTask = Task.Run(async () =>
                 {
-                    var content = client.DownloadData(rawUri);
-                    using (var stream = new MemoryStream(content))
+                    using (HttpClient client = new HttpClient())
                     {
-                        return new Bitmap(stream);
+                        using (HttpResponseMessage response = await client.GetAsync(rawUri))
+                        using (Stream stream = await response.Content.ReadAsStreamAsync())
+                        {
+                            spaceImage = new Bitmap(stream);
+                        }
                     }
-                }
+                });
+                getImageTask.Wait();
+                return spaceImage;
             }
 
             throw new NotSupportedException();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }

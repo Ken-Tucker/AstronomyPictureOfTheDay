@@ -69,30 +69,31 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
 
         public async Task<bool> GetPictureOfTheDay()
         {
-            PictureOfTheDayResponse response = null;
-            response = await _apod.GetTodaysPictureAsync("DEMO_KEY");
+            bool result = false;
+            PictureOfTheDayResponse response = await _apod.GetTodaysPictureAsync("DEMO_KEY");
             if (response != null && response.Success)
             {
 
                 Title = response.pictureOfTheDay.title;
                 PictureOfDay = response.pictureOfTheDay.url;
+                result = true;
             }
 
-            return true;
+            return result;
         }
 
         public async Task<bool> GetMarsPictureOfTheDay()
         {
-            MarsPictureResponse response = null;
-
-            response = await _apod.GetMarsPictureAsync(RoverEnum.Curiosity, DateTime.Now.AddDays(-30), "DEMO_KEY");
+            bool result = false;
+            MarsPictureResponse response = await _apod.GetMarsPictureAsync(RoverEnum.Curiosity, DateTime.Now.AddDays(-30), "DEMO_KEY");
             if (response != null && response.Success)
             {
                 Title = response.picturesFromMars.photos[0].camera.full_name;
                 PictureOfDay = response.picturesFromMars.photos[0].img_src;
+                result = true;
             }
 
-            return true;
+            return result;
         }
 
 
