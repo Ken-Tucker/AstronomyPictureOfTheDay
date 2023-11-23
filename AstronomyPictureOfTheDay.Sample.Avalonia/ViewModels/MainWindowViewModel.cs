@@ -9,6 +9,7 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
     {
         public MainWindowViewModel()
         {
+            _apod = new NasaPictureOfTheDay();
             LoadMarsPictureCommand = new AsyncRelayCommand(LoadMarsPicture);
             LoadPictureCommand = new AsyncRelayCommand(LoadPicture);
             _picOfDay = "";
@@ -16,7 +17,7 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
             getPictureTask.Wait();
         }
 
-
+        private readonly NasaPictureOfTheDay _apod;
         private const string LoadImage = "Loading image";
         public IAsyncRelayCommand LoadMarsPictureCommand { get; }
 
@@ -68,9 +69,8 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
 
         public async Task<bool> GetPictureOfTheDay()
         {
-            var apod = new NasaPictureOfTheDay();
             PictureOfTheDayResponse response = null;
-            response = await apod.GetTodaysPictureAsync("DEMO_KEY");
+            response = await _apod.GetTodaysPictureAsync("DEMO_KEY");
             if (response != null && response.Success)
             {
 
@@ -83,10 +83,9 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
 
         public async Task<bool> GetMarsPictureOfTheDay()
         {
-            var marsPictureOfTheDay = new NasaPictureOfTheDay();
             MarsPictureResponse response = null;
 
-            response = await marsPictureOfTheDay.GetMarsPictureAsync(RoverEnum.Curiosity, DateTime.Now.AddDays(-30), "DEMO_KEY");
+            response = await _apod.GetMarsPictureAsync(RoverEnum.Curiosity, DateTime.Now.AddDays(-30), "DEMO_KEY");
             if (response != null && response.Success)
             {
                 Title = response.picturesFromMars.photos[0].camera.full_name;
