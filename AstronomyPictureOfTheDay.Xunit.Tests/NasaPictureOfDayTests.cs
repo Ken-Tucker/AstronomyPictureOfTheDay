@@ -1,12 +1,12 @@
 using AstronomyPictureOfTheDay.Entities;
 using FakeItEasy;
-using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace AstronomyPictureOfTheDay.Xunit.Tests
 {
-    public class UnitTest1
+    public class NasaPictureOfDayTests
     {
         readonly string key = "testing";
 
@@ -16,7 +16,7 @@ namespace AstronomyPictureOfTheDay.Xunit.Tests
         {
             var rest = A.Fake<IRestServiceCaller>();
             A.CallTo(() => rest.GetAPODJsonAsync(key))
-                               .ThrowsAsync(new Exception(key));
+                               .ThrowsAsync(new HttpRequestException(key));
 
             NasaPictureOfTheDay nasa = new NasaPictureOfTheDay(rest);
 
