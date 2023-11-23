@@ -4,7 +4,6 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace AstronomyPictureOfTheDay.Sample.Avalonia.Converters
 {
@@ -24,20 +23,17 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.Converters
 
             if (value is string rawUri && targetType.IsAssignableFrom(typeof(Bitmap)))
             {
-                Bitmap? spaceImage = null;
-                var getImageTask = Task.Run(async () =>
+
+                using (HttpClient client = new HttpClient())
                 {
-                    using (HttpClient client = new HttpClient())
+                    Bitmap? spaceImage = null;
+                    using (HttpResponseMessage response = client.GetAsync(rawUri).GetAwaiter().GetResult())
+                    using (Stream stream = response.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
                     {
-                        using (HttpResponseMessage response = await client.GetAsync(rawUri))
-                        using (Stream stream = await response.Content.ReadAsStreamAsync())
-                        {
-                            spaceImage = new Bitmap(stream);
-                        }
+                        spaceImage = new Bitmap(stream);
                     }
-                });
-                getImageTask.Wait();
-                return spaceImage;
+                    return spaceImage;
+                }
             }
 
             throw new NotSupportedException();
