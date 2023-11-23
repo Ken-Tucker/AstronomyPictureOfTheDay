@@ -7,20 +7,22 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia
 {
     public class ViewLocator : IDataTemplate
     {
-        public Control Build(object data)
+        public Control Build(object? data)
         {
-            var name = data.GetType().FullName!.Replace("ViewModel", "View");
-            var type = Type.GetType(name);
-
-            if (type != null)
+            if (data != null)
             {
-                return (Control)Activator.CreateInstance(type)!;
-            }
+                var name = data.GetType().FullName!.Replace("ViewModel", "View");
+                var type = Type.GetType(name);
 
-            return new TextBlock { Text = "Not Found: " + name };
+                if (type != null)
+                {
+                    return (Control)Activator.CreateInstance(type)!;
+                }
+            }
+            return new TextBlock { Text = $"Not Found: {data}" };
         }
 
-        public bool Match(object data)
+        public bool Match(object? data)
         {
             return data is ViewModelBase;
         }
