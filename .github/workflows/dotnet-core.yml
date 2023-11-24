@@ -33,7 +33,7 @@ jobs:
       run: dotnet test --configuration Release --no-build --verbosity normal
             
     - name: pack Nuget Packages
-      run: dotnet pack --output ${{env.nuget_folder}} 
+      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}}
       
     - name: publish Nuget Packages to GitHub
       run: dotnet nuget push ${{env.nuget_folder}} --source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
