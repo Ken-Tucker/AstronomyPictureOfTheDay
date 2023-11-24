@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
 env:
-  nuget_folder: "AstronomyPictureOfTheDay\\bin\\Release"
+  nuget_folder: "\\AstronomyPictureOfTheDay\\bin\\Release"
 jobs:
   build:
 
