@@ -36,7 +36,7 @@ jobs:
       run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}}
       
     - name: publish Nuget Packages to GitHub
-      run: dotnet nuget push ${{env.nuget_folder}} --source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
+      run: dotnet nuget push ${{env.nuget_folder}}\*.nupkg source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
       if: github.event_name != 'pull_request'
       
     - name: Upload Artifact
