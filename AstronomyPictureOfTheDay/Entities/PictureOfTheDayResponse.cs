@@ -12,5 +12,6 @@ namespace AstronomyPictureOfTheDay.Entities
         public Exception exception { get; set; }
 
         public PictureOfTheDay pictureOfTheDay { get; set; }
+        public bool CanRetry { get; internal set; }
     }
 }
