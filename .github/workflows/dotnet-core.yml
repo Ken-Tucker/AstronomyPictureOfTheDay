@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
 env:
-  nuget_folder: "\\AstronomyPictureOfTheDay\\bin\\Release"
+  nuget_folder: "packages"
   upload_folder: "AstronomyPictureOfTheDay\\bin\\Release"
   
 jobs:
@@ -32,8 +32,11 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
             
+    - name: pack Nuget Packages
+      run: dotnet pack --output ${{env.nuget_folder}} 
+      
     - name: publish Nuget Packages to GitHub
-      run: dotnet nuget push ${{env.upload_folder}} --source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
+      run: dotnet nuget push ${{env.nuget_folder}} --source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
       if: github.event_name != 'pull_request'
       
     - name: Upload Artifact
