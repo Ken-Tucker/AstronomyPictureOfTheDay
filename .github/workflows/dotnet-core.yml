@@ -7,6 +7,8 @@ on:
     branches: [ main ]
 env:
   nuget_folder: "\\AstronomyPictureOfTheDay\\bin\\Release"
+  upload_folder: "AstronomyPictureOfTheDay\\bin\\Release"
+  
 jobs:
   build:
 
@@ -38,4 +40,4 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
         name: published_nuget
-        path: ${{env.nuget_folder}}
+        path: ${{env.upload_folder}}
