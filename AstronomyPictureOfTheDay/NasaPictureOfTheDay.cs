@@ -1,5 +1,6 @@
 ﻿using AstronomyPictureOfTheDay.Entities;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace AstronomyPictureOfTheDay
@@ -30,6 +31,12 @@ namespace AstronomyPictureOfTheDay
 #endif
                 response.Success = true;
             }
+            catch (HttpRequestException httpEx)
+            {
+                response.Success = false;
+                response.exception = httpEx;
+                response.CanRetry = true;
+            }
             catch (Exception ex)
             {
                 response.Success = false;
@@ -51,6 +58,12 @@ namespace AstronomyPictureOfTheDay
                 response.picturesFromMars = System.Text.Json.JsonSerializer.Deserialize<MarsPictures>(json);
 #endif
                 response.Success = true;
+            }
+            catch (HttpRequestException httpEx)
+            {
+                response.Success = false;
+                response.exception = httpEx;
+                response.CanRetry = true;
             }
             catch (Exception ex)
             {

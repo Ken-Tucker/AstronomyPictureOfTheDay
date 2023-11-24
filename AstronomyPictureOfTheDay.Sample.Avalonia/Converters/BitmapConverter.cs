@@ -26,13 +26,13 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.Converters
 
                 using (HttpClient client = new HttpClient())
                 {
-                    Bitmap? spaceImage = null;
                     using (HttpResponseMessage response = client.GetAsync(rawUri).GetAwaiter().GetResult())
                     using (Stream stream = response.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
                     {
-                        spaceImage = new Bitmap(stream);
+                        Bitmap? spaceImage = new Bitmap(stream);
+
+                        return spaceImage;
                     }
-                    return spaceImage;
                 }
             }
 
