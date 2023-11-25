@@ -8,7 +8,7 @@ on:
 env:
   nuget_folder: "\\packages"
   upload_folder: "AstronomyPictureOfTheDay\\bin\\Release"
-  
+  solution: "AstronomyPictureOfTheDay.sln"
 jobs:
   build:
 
@@ -25,10 +25,12 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 8.0.x
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
     - name: Install dependencies
-      run: dotnet restore
+      run: msbuild ${{env.solution}} -t:restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: msbuild ${{env.caliburn_sln}} /t:Build /p:Configuration=Release
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
             
