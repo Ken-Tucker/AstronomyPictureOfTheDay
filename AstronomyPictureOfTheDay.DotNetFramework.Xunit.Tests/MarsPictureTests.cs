@@ -1,19 +1,20 @@
-using AstronomyPictureOfTheDay.Entities;
+﻿using AstronomyPictureOfTheDay.Entities;
 using FakeItEasy;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AstronomyPictureOfTheDay.Xunit.Tests
+namespace AstronomyPictureOfTheDay.DotNetFramework.Xunit.Tests
 {
-    public class NasaPictureOfDayTests
+    public class MarsPictureTests
     {
         readonly string key = "testing";
 
 
         [Fact]
-        public async Task TestExceptionReturnFalse()
+        public async Task TestHttpExceptionReturnFalse()
         {
             var rest = A.Fake<IRestServiceCaller>();
             A.CallTo(() => rest.GetAPODJsonAsync(key))
@@ -63,19 +64,32 @@ namespace AstronomyPictureOfTheDay.Xunit.Tests
         [Fact]
         public async Task TestGetResults()
         {
+            DateTime pictureDate = DateTime.Today;
             var rest = A.Fake<IRestServiceCaller>();
-            A.CallTo(() => rest.GetAPODJsonAsync(key))
+            A.CallTo(() => rest.GetMarsPictureJsonAsync("Curiosity", pictureDate, "DEMO_KEY"))
                                .Returns<Task<string>>
-                               (Task.FromResult<string>("{\"copyright\": \"Ole C. SalomonsenArctic Light Photo\",\"date\": \"2018-11-18\",\"explanation\": \"It was Halloween and the sky looked like a creature. Exactly which creature, the astrophotographer was unsure but (possibly you can suggest one). Exactly what caused this  eerie apparition in 2013 was sure: one of the best auroral displays in recent years. This spectacular aurora had an unusually high degree of detail. Pictured here, the vivid green and purple  auroral colors are caused by high atmospheric oxygen and nitrogen reacting to a burst of incoming electrons.  Birch trees in Troms\u00f8, Norway formed an also eerie foreground. Recently, new photogenic auroras have accompanied new geomagnetic storms.\",\"hdurl\": \"https://apod.nasa.gov/apod/image/1811/creatureaurora_salomonsen_600.jpg\",\"media_type\": \"image\",\"service_version\": \"v1\",\"title\": \"Creature Aurora Over Norway\",\"url\": \"https://apod.nasa.gov/apod/image/1811/creatureaurora_salomonsen_960.jpg\"}"));
+                               (Task.FromResult<string>(GetMarsPictureJson()));
 
             NasaPictureOfTheDay nasa = new NasaPictureOfTheDay(rest);
 
-            PictureOfTheDayResponse results = null;
+            MarsPictureResponse results = null;
 
-            results = await nasa.GetTodaysPictureAsync(key);
+            results = await nasa.GetMarsPictureAsync(RoverEnum.Curiosity, pictureDate, "DEMO_KEY"); ;
 
             Assert.True(results.Success);
-            Assert.NotNull(results.pictureOfTheDay);
+            Assert.NotNull(results.picturesFromMars.photos);
         }
+
+        private string GetMarsPictureJson()
+        {
+            string json = string.Empty;
+            using (StreamReader srMars = new StreamReader("MarsPic.json"))
+            {
+                json = srMars.ReadToEnd();
+
+            }
+            return json;
+        }
+
     }
 }

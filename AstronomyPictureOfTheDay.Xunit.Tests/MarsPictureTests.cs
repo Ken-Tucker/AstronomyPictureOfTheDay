@@ -14,11 +14,43 @@ namespace AstronomyPictureOfTheDay.Xunit.Tests
 
 
         [Fact]
-        public async Task TestExceptionReturnFalse()
+        public async Task TestHttpExceptionReturnFalse()
         {
             var rest = A.Fake<IRestServiceCaller>();
             A.CallTo(() => rest.GetAPODJsonAsync(key))
                                .ThrowsAsync(new HttpRequestException(key));
+
+            NasaPictureOfTheDay nasa = new NasaPictureOfTheDay(rest);
+
+            var results = await nasa.GetTodaysPictureAsync(key);
+
+
+            Assert.False(results.Success);
+            Assert.NotNull(results.exception);
+        }
+
+        [Fact]
+        public async Task TestTaskExceptionReturnFalse()
+        {
+            var rest = A.Fake<IRestServiceCaller>();
+            A.CallTo(() => rest.GetAPODJsonAsync(key))
+                               .ThrowsAsync(new TaskCanceledException(key));
+
+            NasaPictureOfTheDay nasa = new NasaPictureOfTheDay(rest);
+
+            var results = await nasa.GetTodaysPictureAsync(key);
+
+
+            Assert.False(results.Success);
+            Assert.NotNull(results.exception);
+        }
+
+        [Fact]
+        public async Task TestInvalidOperationExceptionReturnFalse()
+        {
+            var rest = A.Fake<IRestServiceCaller>();
+            A.CallTo(() => rest.GetAPODJsonAsync(key))
+                               .ThrowsAsync(new InvalidOperationException(key));
 
             NasaPictureOfTheDay nasa = new NasaPictureOfTheDay(rest);
 

@@ -1,11 +1,11 @@
-using AstronomyPictureOfTheDay.Entities;
+﻿using AstronomyPictureOfTheDay.Entities;
 using FakeItEasy;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace AstronomyPictureOfTheDay.Xunit.Tests
+namespace AstronomyPictureOfTheDay.DotNetFramework.Xunit.Tests
 {
     public class NasaPictureOfDayTests
     {
@@ -78,4 +78,5 @@ namespace AstronomyPictureOfTheDay.Xunit.Tests
             Assert.NotNull(results.pictureOfTheDay);
         }
     }
+
 }

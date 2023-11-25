@@ -37,10 +37,16 @@ namespace AstronomyPictureOfTheDay
                 response.exception = httpEx;
                 response.CanRetry = true;
             }
-            catch (Exception ex)
+            catch (TaskCanceledException taskCancelException)
             {
                 response.Success = false;
-                response.exception = ex;
+                response.exception = taskCancelException;
+                response.CanRetry = true;
+            }
+            catch (InvalidOperationException invalidOpException)
+            {
+                response.Success = false;
+                response.exception = invalidOpException;
             }
 
             return response;
@@ -65,11 +71,18 @@ namespace AstronomyPictureOfTheDay
                 response.exception = httpEx;
                 response.CanRetry = true;
             }
-            catch (Exception ex)
+            catch (TaskCanceledException taskCancelException)
             {
                 response.Success = false;
-                response.exception = ex;
+                response.exception = taskCancelException;
+                response.CanRetry = true;
             }
+            catch (InvalidOperationException invalidOpException)
+            {
+                response.Success = false;
+                response.exception = invalidOpException;
+            }
+
 
             return response;
         }
