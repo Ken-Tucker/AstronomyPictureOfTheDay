@@ -18,6 +18,7 @@
 		<FileVersion>2.0.0</FileVersion>
 		<Copyright>2023</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Title>Astronomy Picture Of The Day</Title>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
