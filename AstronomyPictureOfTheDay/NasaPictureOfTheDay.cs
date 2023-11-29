@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AstronomyPictureOfTheDay
 {
-    public class NasaPictureOfTheDay
+    public class NasaPictureOfTheDay : INasaPictureOfTheDay
     {
         readonly IRestServiceCaller restServiceCaller = new RestServiceCaller();
 
