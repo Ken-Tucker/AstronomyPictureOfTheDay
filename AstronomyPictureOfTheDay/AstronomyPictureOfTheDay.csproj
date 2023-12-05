@@ -4,7 +4,7 @@
 		<TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>AstronomyPictureTheDay</PackageId>
-		<PackageVersion>2.0.0</PackageVersion>
+		<PackageVersion></PackageVersion>
 		<PackageTags>Nasa, Mars, Astronomy</PackageTags>
 		<PackageReleaseNotes>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</PackageReleaseNotes>
 		<PackageLicenseUrl></PackageLicenseUrl>
@@ -14,21 +14,23 @@
 		<PackOnBuild>true</PackOnBuild>
 		<Authors>Ken Tucker</Authors>
 		<Description>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</Description>
-		<AssemblyVersion>2.0.0</AssemblyVersion>
-		<FileVersion>2.0.0</FileVersion>
+		<AssemblyVersion></AssemblyVersion>
+		<FileVersion></FileVersion>
 		<Copyright>2023</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Title>Astronomy Picture Of The Day</Title>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<PlatformTarget>AnyCPU</PlatformTarget>
 	</PropertyGroup>
 	
-	<ItemGroup>
-		<Compile Remove="Class1.cs" />
-	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="docs\readme.md" Pack="True" PackagePath="\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
