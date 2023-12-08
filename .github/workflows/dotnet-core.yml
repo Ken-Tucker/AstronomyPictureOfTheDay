@@ -34,9 +34,9 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
     - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          dotnet_format: true          
+      uses: wearerequired/lint-action@v2
+      with:
+        dotnet_format: true          
     - name: pack Nuget Packages
       run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{ github.run_attempt }}
       
