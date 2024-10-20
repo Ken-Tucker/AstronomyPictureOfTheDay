@@ -44,7 +44,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: published_nuget
+        name: published_folder
         path: ${{env.upload_folder}}
 
     - name: Upload Packages Artifact
