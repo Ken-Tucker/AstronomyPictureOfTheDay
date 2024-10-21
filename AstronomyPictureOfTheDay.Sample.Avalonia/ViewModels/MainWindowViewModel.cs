@@ -78,6 +78,10 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
                 PictureOfDay = response.pictureOfTheDay.url;
                 result = true;
             }
+            else
+            {
+                Title = "Failed to get picture of the day";
+            }
 
             return result;
         }
@@ -85,12 +89,16 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
         public async Task<bool> GetMarsPictureOfTheDay()
         {
             bool result = false;
-            MarsPictureResponse response = await _apod.GetMarsPictureAsync(RoverEnum.Curiosity, DateTime.Now.AddDays(-30), "DEMO_KEY");
-            if (response != null && response.Success)
+            MarsPictureResponse response = await _apod.GetMarsPictureAsync(RoverEnum.Perseverance, DateTime.Now.AddDays(-30), "DEMO_KEY");
+            if (response != null && response.Success && response.picturesFromMars.photos != null && response.picturesFromMars.photos.Length > 0)
             {
                 Title = response.picturesFromMars.photos[0].camera.full_name;
                 PictureOfDay = response.picturesFromMars.photos[0].img_src;
                 result = true;
+            }
+            else
+            {
+                Title = "Failed to get mars picture of the day";
             }
 
             return result;

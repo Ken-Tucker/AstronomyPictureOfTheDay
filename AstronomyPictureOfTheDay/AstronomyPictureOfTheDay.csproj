@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>AstronomyPictureTheDay</PackageId>
 		<PackageVersion></PackageVersion>
@@ -16,7 +16,7 @@
 		<Description>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</Description>
 		<AssemblyVersion></AssemblyVersion>
 		<FileVersion></FileVersion>
-		<Copyright>2023</Copyright>
+		<Copyright>2024</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Title>Astronomy Picture Of The Day</Title>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
