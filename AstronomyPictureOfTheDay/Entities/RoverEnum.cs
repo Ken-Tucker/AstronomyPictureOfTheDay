@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AstronomyPictureOfTheDay.Entities
+﻿namespace AstronomyPictureOfTheDay.Entities
 {
     public enum RoverEnum
     {
-        Curiosity, 
-        Opportunity
+        Curiosity,
+        Opportunity,
+        Perseverance
     }
 }
