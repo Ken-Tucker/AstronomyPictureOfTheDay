@@ -41,15 +41,9 @@ jobs:
         preferLatestVersion: true
     - name: Determine Version
       uses: gittools/actions/gitversion/execute@v3.0.2
-    - name: Display GitVersion FullSemVer
-      run: echo "FullSemVer (env.GitVersion_FullSemVer) ${{env.GitVersion_FullSemVer}}"
-    - name: Display GitVersion PreReleaseNumber
-      run: echo "PreReleaseNumber (env.GitVersion_PreReleaseNumber) ${{env.GitVersion_PreReleaseNumber}}"
-    - name: Display GitVersion BuildMetaData
-      run: echo "BuildMetaData (env.GitVersion_BuildMetaData) ${{env.GitVersion_BuildMetaData}}"
-        
+       
     - name: pack Nuget Packages
-      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{ github.run_attempt }}
+      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{env.GitVersion_PreReleaseNumber}}
       
     - name: publish Nuget Packages to GitHub
       run: dotnet nuget push ${{env.nuget_upload}} --source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
