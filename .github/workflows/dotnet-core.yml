@@ -39,6 +39,8 @@ jobs:
       with:
         versionSpec: '6.x'
         preferLatestVersion: true
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v3.0.2
     - name: Display GitVersion variables
       run: echo "FullSemVer (env.GitVersion_FullSemVer) ${{env.GitVersion_FullSemVer}}"
         
