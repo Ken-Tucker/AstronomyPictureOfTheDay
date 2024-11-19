@@ -34,15 +34,10 @@ jobs:
       run: msbuild ${{env.caliburn_sln}} /t:Build /p:Configuration=Release
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
-    - name: Generate build number
-      id: buildnumber
-      uses: onyxmueller/build-tag-number@v1
-      with:
-        token: ${{secrets.github_token}}        
     - name: Print new build number
-      run: echo "Build number is ${env:BUILD_NUMBER}"        
+      run: echo "Build number is ${github:run_attempt}"        
     - name: pack Nuget Packages
-      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{steps.buildnumber.outputs.build_number}}
+      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{github.run_attempt}}
       
     - name: publish Nuget Packages to GitHub
       run: dotnet nuget push ${{env.nuget_upload}} --source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
