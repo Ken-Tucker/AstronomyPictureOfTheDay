@@ -34,9 +34,16 @@ jobs:
       run: msbuild ${{env.caliburn_sln}} /t:Build /p:Configuration=Release
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
-            
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v3.0.2
+      with:
+        versionSpec: '6.x'
+        preferLatestVersion: true
+    - name: Determine Version
+      uses: gittools/actions/gitversion/execute@v3.0.2
+       
     - name: pack Nuget Packages
-      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{ github.run_attempt }}
+      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{env.GitVersion_PreReleaseNumber}}
       
     - name: publish Nuget Packages to GitHub
       run: dotnet nuget push ${{env.nuget_upload}} --source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
