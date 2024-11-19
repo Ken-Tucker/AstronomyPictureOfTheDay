@@ -35,17 +35,13 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release --no-build --verbosity normal
     - name: Generate build number
-      id: buildnumber
-      uses: einaregilsson/build-number@v2 
+      uses: onyxmueller/build-tag-number@v1
       with:
         token: ${{secrets.github_token}}        
-    - name: Upload build number
-      uses: actions/upload-artifact@v4
-      with:
-        name: BUILD_NUMBER
-        path: BUILD_NUMBER           
+    - name: Print new build number
+      run: echo "Build number is $BUILD_NUMBER"        
     - name: pack Nuget Packages
-      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{steps.buildnumber.outputs.build_number}}
+      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{BUILD_NUMBER}}
       
     - name: publish Nuget Packages to GitHub
       run: dotnet nuget push ${{env.nuget_upload}} --source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
