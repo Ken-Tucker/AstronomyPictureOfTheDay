@@ -39,9 +39,9 @@ jobs:
       with:
         versionSpec: '6.x'
         preferLatestVersion: true
-    - run: |
-        echo "FullSemVer (env.fullSemVer)            : ${{ env.fullSemVer }}"
-        name: Display GitVersion variables (without prefix)
+    - name: Display GitVersion variables (without prefix)
+      run: echo ${{ env.fullSemVer }}
+        
     - name: pack Nuget Packages
       run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{ github.run_attempt }}
       
