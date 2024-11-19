@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 env:
   nuget_folder: "\\packages"
-  nuget_upload: "packages\\*.nuget"
+  nuget_upload: "\\packages\\*.nuget"
   upload_folder: "AstronomyPictureOfTheDay\\bin\\Release"
   solution: "AstronomyPictureOfTheDay.sln"
 jobs:
