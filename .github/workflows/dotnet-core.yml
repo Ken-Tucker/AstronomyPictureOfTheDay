@@ -40,7 +40,7 @@ jobs:
       with:
         token: ${{secrets.github_token}}        
     - name: Upload build number
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: BUILD_NUMBER
         path: BUILD_NUMBER           
