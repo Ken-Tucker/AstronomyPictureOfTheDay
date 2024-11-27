@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace AstronomyPictureOfTheDay.Xunit.Tests
 {
 
-
     public class NasaPictureOfTheDayTests
     {
         private readonly Mock<IRestServiceCaller> mockRestServiceCaller;
