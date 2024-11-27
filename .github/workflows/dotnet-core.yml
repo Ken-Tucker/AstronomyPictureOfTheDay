@@ -33,7 +33,7 @@ jobs:
     - name: Build
       run: msbuild ${{env.caliburn_sln}} /t:Build /p:Configuration=Release
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
+      run: dotnet test --configuration Release --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=../TestResults/Coverage/
     - name: Install GitVersion
       uses: gittools/actions/gitversion/setup@v3.0.2
       with:
