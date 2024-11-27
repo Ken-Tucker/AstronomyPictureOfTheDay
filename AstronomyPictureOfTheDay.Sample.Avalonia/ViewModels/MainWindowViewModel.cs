@@ -86,14 +86,45 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
             return result;
         }
 
+        private MarsPictureResponse _marsPictureResponse;
+        private int _cameraIndex = 0;
+        public int CameraIndex
+        {
+            get
+            {
+                return _cameraIndex;
+            }
+            set
+            {
+                if (_marsPictureResponse != null)
+                {
+                    if (value >= _marsPictureResponse.picturesFromMars.photos.Length)
+                    {
+                        _cameraIndex = 0;
+                    }
+                    else
+                    {
+                        _cameraIndex = value;
+                    }
+                    Title = _marsPictureResponse.picturesFromMars.photos[_cameraIndex].camera.full_name;
+                    PictureOfDay = _marsPictureResponse.picturesFromMars.photos[_cameraIndex].img_src;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
         public async Task<bool> GetMarsPictureOfTheDay()
         {
             bool result = false;
             MarsPictureResponse response = await _apod.GetMarsPictureAsync(RoverEnum.Perseverance, DateTime.Now.AddDays(-30), "DEMO_KEY");
             if (response != null && response.Success && response.picturesFromMars.photos != null && response.picturesFromMars.photos.Length > 0)
             {
-                Title = response.picturesFromMars.photos[0].camera.full_name;
-                PictureOfDay = response.picturesFromMars.photos[0].img_src;
+                if (CameraIndex >= response.picturesFromMars.photos.Length)
+                {
+                    CameraIndex = 0;
+                }
+                _marsPictureResponse = response;
+                CameraIndex = 1;
                 result = true;
             }
             else

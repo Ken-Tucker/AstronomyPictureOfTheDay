@@ -1,0 +1,36 @@
+name: Deployment
+
+concurrency:
+  group: production
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch: # Allow running the workflow manually from the GitHub UI
+  push:
+    branches:
+      - 'main'       # Run the workflow when pushing to the main branch
+
+env:
+  servicelocator_sln : "AstronomyPictureOfTheDay.sln"
+  package_feed: "https://api.nuget.org/v3/index.json"
+  nuget_folder: "\\packages"
+  
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      - name: Restore dependencies
+        run: dotnet restore ${{env.servicelocator_sln}}
+      - name: Build
+        run: dotnet build  ${{env.servicelocator_sln}} --no-restore --configuration Release 
+      - name: Pack Nuget
+        run: dotnet pack ${{env.servicelocator_sln}} --output ${{env.nuget_folder}}
+      
+      - name: publish Nuget Packages to GitHub
+        run: dotnet nuget push packages/*.nupkg --source ${{env.package_feed}} --api-key ${{secrets.PUBLISH_TO_NUGET}} --skip-duplicate

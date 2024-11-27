@@ -7,10 +7,11 @@ namespace AstronomyPictureOfTheDay
 {
     public class NasaPictureOfTheDay : INasaPictureOfTheDay
     {
-        readonly IRestServiceCaller restServiceCaller = new RestServiceCaller();
+        readonly IRestServiceCaller restServiceCaller;
 
         public NasaPictureOfTheDay()
         {
+            restServiceCaller = new RestServiceCaller();
         }
 
         public NasaPictureOfTheDay(IRestServiceCaller restService)
