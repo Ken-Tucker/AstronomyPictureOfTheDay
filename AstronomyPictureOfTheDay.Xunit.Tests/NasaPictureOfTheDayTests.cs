@@ -158,5 +158,4 @@ namespace AstronomyPictureOfTheDay.Xunit.Tests
             Assert.False(response.CanRetry);
         }
     }
-
 }
