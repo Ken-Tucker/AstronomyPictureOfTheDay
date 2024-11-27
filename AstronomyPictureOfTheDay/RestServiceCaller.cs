@@ -6,10 +6,6 @@ namespace AstronomyPictureOfTheDay
 {
     public class RestServiceCaller : IRestServiceCaller
     {
-        public RestServiceCaller()
-        {
-        }
-
         private readonly static HttpClient client = new HttpClient();
 
         public async Task<string> GetAPODJsonAsync(string apiKey)

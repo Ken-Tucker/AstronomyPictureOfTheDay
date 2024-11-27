@@ -39,3 +39,6 @@ Thumbs.db
 
 # dotCover
 *.dotCover
+
+coverage.json
+coverage.opencover.xml
