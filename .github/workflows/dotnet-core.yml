@@ -33,7 +33,8 @@ jobs:
     - name: Build
       run: msbuild ${{env.caliburn_sln}} /t:Build /p:Configuration=Release
     - name: Test
-      run: dotnet test --configuration Release -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal    - name: Create Test Coverage Badge
+      run: dotnet test --configuration Release -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal    
+    - name: Create Test Coverage Badge
       uses: simon-k/dotnet-code-coverage-badge@v1.0.0
       id: create_coverage_badge
       with:
