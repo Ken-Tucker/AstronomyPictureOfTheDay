@@ -11,7 +11,7 @@ on:
       - 'main'       # Run the workflow when pushing to the main branch
 
 env:
-  servicelocator_sln : "AstronomyPictureOfTheDay.sln"
+  nuget_project : "AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj"
   package_feed: "https://api.nuget.org/v3/index.json"
   nuget_folder: "\\packages"
   
@@ -26,11 +26,11 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: Restore dependencies
-        run: dotnet restore ${{env.servicelocator_sln}}
+        run: dotnet restore ${{env.nuget_project}}
       - name: Build
-        run: dotnet build  ${{env.servicelocator_sln}} --no-restore --configuration Release 
+        run: dotnet build  ${{env.nuget_project}} --no-restore --configuration Release 
       - name: Pack Nuget
-        run: dotnet pack ${{env.servicelocator_sln}} --output ${{env.nuget_folder}}
+        run: dotnet pack ${{env.nuget_project}} --output ${{env.nuget_folder}}
       
       - name: publish Nuget Packages to GitHub
         run: dotnet nuget push packages/*.nupkg --source ${{env.package_feed}} --api-key ${{secrets.PUBLISH_TO_NUGET}} --skip-duplicate
