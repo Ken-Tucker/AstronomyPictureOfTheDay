@@ -5,8 +5,8 @@ A standard library for calling the NASA Astronomy Picture Of The Day web service
 
 [![CodeQL](https://github.com/Ken-Tucker/AstronomyPictureOfTheDay/actions/workflows/codeql.yml/badge.svg)](https://github.com/Ken-Tucker/AstronomyPictureOfTheDay/actions/workflows/codeql.yml)
 
-![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/vb2ae/870c49615ed7c8b1af25a0f5f0d8f7a4/raw/nasa-
-[![CodeFactor](https://www.codefactor.io/repository/github/ken-tucker/AstronomyPictureOfTheDay/badge)](https://www.codefactor.io/repository/github/ken-tucker/AstronomyPictureOfTheDay)code-coverage.json)
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/vb2ae/870c49615ed7c8b1af25a0f5f0d8f7a4/raw/nasa-code-coverage.json)
+[![CodeFactor](https://www.codefactor.io/repository/github/ken-tucker/AstronomyPictureOfTheDay/badge)](https://www.codefactor.io/repository/github/ken-tucker/AstronomyPictureOfTheDay)
 
 #How to use the library
 
