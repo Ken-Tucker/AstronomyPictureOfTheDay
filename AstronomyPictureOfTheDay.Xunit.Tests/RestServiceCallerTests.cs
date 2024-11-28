@@ -28,27 +28,29 @@ namespace AstronomyPictureOfTheDay.Tests
             // Arrange
             var apiKey = "DEMO_KEY";
             var expectedJson = "{\"date\":\"2023-10-01\",\"explanation\":\"Test explanation\"}";
-            var requestUri = new Uri($"https://api.nasa.gov/planetary/apod?api_key={apiKey}");
 
-            _httpMessageHandler
+            using (var returnMessage = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(expectedJson)
+            })
+            {
+                _httpMessageHandler
                     .Protected()
                     .Setup<Task<HttpResponseMessage>>(
                         "SendAsync",
                         ItExpr.IsAny<HttpRequestMessage>(),
                         ItExpr.IsAny<CancellationToken>()
                      )
-                    .ReturnsAsync(new HttpResponseMessage
-                    {
-                        StatusCode = HttpStatusCode.OK,
-                        Content = new StringContent(expectedJson)
-                    })
+                    .ReturnsAsync(returnMessage)
                     .Verifiable();
 
-            // Act
-            var result = await _restServiceCaller.GetAPODJsonAsync(apiKey);
+                // Act
+                var result = await _restServiceCaller.GetAPODJsonAsync(apiKey);
 
-            // Assert
-            Assert.Equal(expectedJson, result);
+                // Assert
+                Assert.Equal(expectedJson, result);
+            }
         }
 
         [Fact]
@@ -59,27 +61,28 @@ namespace AstronomyPictureOfTheDay.Tests
             var earthDate = new DateTime(2023, 10, 01);
             var apiKey = "DEMO_KEY";
             var expectedJson = "{\"photos\":[]}";
-            var requestUri = new Uri($"https://api.nasa.gov/mars-photos/api/v1/rovers/{rover}/photos?earth_date={earthDate:yyyy-MM-dd}&api_key={apiKey}");
+            using (var returnMessage = new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(expectedJson)
+            })
+            {
+                _httpMessageHandler
+                        .Protected()
+                        .Setup<Task<HttpResponseMessage>>(
+                            "SendAsync",
+                            ItExpr.IsAny<HttpRequestMessage>(),
+                            ItExpr.IsAny<CancellationToken>()
+                         )
+                        .ReturnsAsync(returnMessage)
+                        .Verifiable();
 
-            _httpMessageHandler
-                    .Protected()
-                    .Setup<Task<HttpResponseMessage>>(
-                        "SendAsync",
-                        ItExpr.IsAny<HttpRequestMessage>(),
-                        ItExpr.IsAny<CancellationToken>()
-                     )
-                    .ReturnsAsync(new HttpResponseMessage
-                    {
-                        StatusCode = HttpStatusCode.OK,
-                        Content = new StringContent(expectedJson)
-                    })
-                    .Verifiable();
+                // Act
+                var result = await _restServiceCaller.GetMarsPictureJsonAsync(rover, earthDate, apiKey);
 
-            // Act
-            var result = await _restServiceCaller.GetMarsPictureJsonAsync(rover, earthDate, apiKey);
-
-            // Assert
-            Assert.Equal(expectedJson, result);
+                // Assert
+                Assert.Equal(expectedJson, result);
+            }
         }
     }
 }
