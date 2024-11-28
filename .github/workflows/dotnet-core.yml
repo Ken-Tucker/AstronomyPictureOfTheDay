@@ -40,7 +40,7 @@ jobs:
       with:
         label: Unit Test Coverage
         color: brightgreen
-        path: AstronomyPictureOfTheDay.Xunit.Tests/TestResults/coverage/coverage.opencover.xml
+        path: AstronomyPictureOfTheDay.Xunit.Tests/TestResults/coverage.opencover.xml
         gist-filename: nasa-code-coverage.json
         gist-id: 870c49615ed7c8b1af25a0f5f0d8f7a4
         gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
