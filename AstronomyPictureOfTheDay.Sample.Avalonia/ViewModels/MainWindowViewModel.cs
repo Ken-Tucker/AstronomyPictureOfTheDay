@@ -7,17 +7,19 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
+        private readonly NasaPictureOfTheDay _apod;
+        private MarsPictureResponse _marsPictureResponse;
         public MainWindowViewModel()
         {
             _apod = new NasaPictureOfTheDay();
             LoadMarsPictureCommand = new AsyncRelayCommand(LoadMarsPicture);
             LoadPictureCommand = new AsyncRelayCommand(LoadPicture);
             _picOfDay = "";
+            _marsPictureResponse = new MarsPictureResponse();
             var getPictureTask = Task.Run(async () => await GetPictureOfTheDay());
             getPictureTask.Wait();
         }
 
-        private readonly NasaPictureOfTheDay _apod;
         private const string LoadImage = "Loading image";
         public IAsyncRelayCommand LoadMarsPictureCommand { get; }
 
@@ -86,7 +88,6 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
             return result;
         }
 
-        private MarsPictureResponse _marsPictureResponse;
         private int _cameraIndex = 0;
         public int CameraIndex
         {
@@ -96,16 +97,10 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
             }
             set
             {
-                if (_marsPictureResponse != null)
+                if (_marsPictureResponse.picturesFromMars.photos.Length > 0)
                 {
-                    if (value >= _marsPictureResponse.picturesFromMars.photos.Length)
-                    {
-                        _cameraIndex = 0;
-                    }
-                    else
-                    {
-                        _cameraIndex = value;
-                    }
+                    _cameraIndex = value >= _marsPictureResponse.picturesFromMars.photos.Length ? 0 : value;
+
                     Title = _marsPictureResponse.picturesFromMars.photos[_cameraIndex].camera.full_name;
                     PictureOfDay = _marsPictureResponse.picturesFromMars.photos[_cameraIndex].img_src;
 
