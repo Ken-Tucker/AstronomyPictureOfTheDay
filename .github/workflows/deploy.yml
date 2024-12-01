@@ -26,11 +26,11 @@ jobs:
         with:
           dotnet-version: 9.0.x
       - name: Restore dependencies
-        run: dotnet restore ${{env.nuget_project}}
+        run: dotnet restore AstronomyPictureOfTheDay/AstronomyPictureOfTheDay.csproj
       - name: Build
-        run: dotnet build  ${{env.nuget_project}} --no-restore --configuration Release 
+        run: dotnet build  AstronomyPictureOfTheDay/AstronomyPictureOfTheDay.csproj --no-restore --configuration Release 
       - name: Pack Nuget
-        run: dotnet pack ${{env.nuget_project}} --output ${{env.nuget_folder}} --no-build
+        run: dotnet pack AstronomyPictureOfTheDay/AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --no-build
       
       - name: publish Nuget Packages to GitHub
         run: dotnet nuget push packages/*.nupkg --source ${{env.package_feed}} --api-key ${{secrets.PUBLISH_TO_NUGET}} --skip-duplicate
