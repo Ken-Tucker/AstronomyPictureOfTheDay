@@ -11,7 +11,7 @@ on:
       - 'main'       # Run the workflow when pushing to the main branch
 
 env:
-  nuget_project : "AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj"
+  nuget_project : "AstronomyPictureOfTheDay\\AstronomyPictureOfTheDay.csproj"
   package_feed: "https://api.nuget.org/v3/index.json"
   nuget_folder: "\\packages"
   
