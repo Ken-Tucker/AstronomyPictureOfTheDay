@@ -11,7 +11,6 @@ on:
       - 'main'       # Run the workflow when pushing to the main branch
 
 env:
-  nuget_project : "\\AstronomyPictureOfTheDay\\AstronomyPictureOfTheDay.csproj"
   package_feed: "https://api.nuget.org/v3/index.json"
   nuget_folder: "\\packages"
   
@@ -25,12 +24,10 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0.x
-      - name: Restore dependencies
-        run: dotnet restore AstronomyPictureOfTheDay/AstronomyPictureOfTheDay.csproj
-      - name: Build
-        run: dotnet build  AstronomyPictureOfTheDay/AstronomyPictureOfTheDay.csproj --no-restore --configuration Release 
-      - name: Pack Nuget
-        run: dotnet pack AstronomyPictureOfTheDay/AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --no-build
-      
+      - uses: actions/download-artifact@v4
+        name: "Download Node Modules - v4"
+        with:
+          name: published_nuget
+          path: ${{env.nuget_folder}}    
       - name: publish Nuget Packages to GitHub
         run: dotnet nuget push packages/*.nupkg --source ${{env.package_feed}} --api-key ${{secrets.PUBLISH_TO_NUGET}} --skip-duplicate
