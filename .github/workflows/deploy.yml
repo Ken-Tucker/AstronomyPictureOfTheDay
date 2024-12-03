@@ -19,15 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - uses: actions/checkout@v4
+      #- uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0.x
       - uses: actions/download-artifact@v4
-        name: "Download Node Modules - v4"
-        with:
-          name: published_nuget
-          path: ${{env.nuget_folder}}    
-      - name: publish Nuget Packages to GitHub
-        run: dotnet nuget push packages/*.nupkg --source ${{env.package_feed}} --api-key ${{secrets.PUBLISH_TO_NUGET}} --skip-duplicate
+      - name: Display structure of downloaded files
+        run: ls -R   
+      #- name: publish Nuget Packages to GitHub
+      #  run: dotnet nuget push packages/*.nupkg --source ${{env.package_feed}} --api-key ${{secrets.PUBLISH_TO_NUGET}} --skip-duplicate
