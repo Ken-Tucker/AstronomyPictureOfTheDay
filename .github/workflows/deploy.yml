@@ -11,7 +11,6 @@ on:
       - completed
 
 env:
-  nuget_project : "AstronomyPictureOfTheDay\\AstronomyPictureOfTheDay.csproj"
   package_feed: "https://api.nuget.org/v3/index.json"
   nuget_folder: "\\packages"
   
@@ -20,17 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - uses: actions/checkout@v4
+      #- uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0.x
-      - name: Restore dependencies
-        run: dotnet restore ${{env.nuget_project}}
-      - name: Build
-        run: dotnet build  ${{env.nuget_project}} --no-restore --configuration Release 
-      - name: Pack Nuget
-        run: dotnet pack ${{env.nuget_project}} --output ${{env.nuget_folder}}
+      - uses: actions/download-artifact@v4
+      - name: Display structure of downloaded files
+        run: ls -R   
       
-      - name: publish Nuget Packages to GitHub
-        run: dotnet nuget push packages/*.nupkg --source ${{env.package_feed}} --api-key ${{secrets.PUBLISH_TO_NUGET}} --skip-duplicate
+      #- name: publish Nuget Packages to GitHub
+      #  run: dotnet nuget push packages/*.nupkg --source ${{env.package_feed}} --api-key ${{secrets.PUBLISH_TO_NUGET}} --skip-duplicate
