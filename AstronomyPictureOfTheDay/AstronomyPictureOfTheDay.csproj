@@ -19,7 +19,7 @@
 		<Copyright>2024</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Title>Astronomy Picture Of The Day</Title>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
