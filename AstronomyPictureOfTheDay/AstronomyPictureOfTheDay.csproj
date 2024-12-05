@@ -9,7 +9,7 @@
 		<PackageReleaseNotes>Class for calling the nasa Astronomy Picture of the Day and Mars rover picture web service</PackageReleaseNotes>
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/vb2ae/AstronomyPictureOfTheDay</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/vb2ae/AstronomyPictureOfTheDay</RepositoryUrl>
+		<RepositoryUrl>https://github.com/ken-tucker/AstronomyPictureOfTheDay</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackOnBuild>true</PackOnBuild>
 		<Authors>Ken Tucker</Authors>
