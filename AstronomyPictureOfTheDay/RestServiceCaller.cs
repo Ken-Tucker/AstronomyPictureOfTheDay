@@ -13,7 +13,7 @@ namespace AstronomyPictureOfTheDay
             client = new HttpClient();
         }
 
-        public RestServiceCaller(IHttpClientFactory httpClientFactory)
+        public RestServiceCaller(System.Net.Http.IHttpClientFactory httpClientFactory)
         {
             client = httpClientFactory.CreateClient(NasaPictureOfTheDay.HttpClientFactoryName);
         }
