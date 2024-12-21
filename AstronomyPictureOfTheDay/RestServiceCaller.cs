@@ -13,9 +13,9 @@ namespace AstronomyPictureOfTheDay
             client = new HttpClient();
         }
 
-        public RestServiceCaller(HttpClient httpClient)
+        public RestServiceCaller(IHttpClientFactory httpClientFactory)
         {
-            client = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            client = httpClientFactory.CreateClient(NasaPictureOfTheDay.HttpClientFactoryName);
         }
 
         public async Task<string> GetAPODJsonAsync(string apiKey)
