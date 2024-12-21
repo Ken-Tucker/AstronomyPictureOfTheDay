@@ -12,7 +12,7 @@ env:
 jobs:
   build:
 
-    runs-on: 'windows-2022'
+    runs-on: 'ubuntu-latest'
 
     steps:
     - name: Checkout repository
@@ -27,6 +27,15 @@ jobs:
         dotnet-version: 9.0.x
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
+    
+    - name: Install Microsoft SBom tool
+      run: dotnet tool install --global Microsoft.Sbom.DotNetTool
+
+      
+    - name: Install Nerdbank Git versioning
+      run: dotnet tool install -g nbgv    
+    - name: Install Nerdbank Git versioning
+      run: nbgv cloud
     - name: Install dependencies
       run: msbuild ${{env.solution}} -t:restore
     - name: Build
@@ -48,16 +57,9 @@ jobs:
     - name: Print badge data
       run: echo "Badge data ${{steps.create_coverage_badge.outputs.badge}}"
 
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v3.0.2
-      with:
-        versionSpec: '6.x'
-        preferLatestVersion: true
-    - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v3.0.2
        
     - name: pack Nuget Packages
-      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release /p:Version=2.0.${{env.GitVersion_PreReleaseNumber}}
+      run: dotnet pack AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.csproj --output ${{env.nuget_folder}} --configuration release 
       
     - name: publish Nuget Packages to GitHub
       run: dotnet nuget push ${{env.nuget_upload}} --source ${{vars.NUGET_FEED}} --api-key ${{secrets.NUGET_PACKAGE_UPLOAD}} --skip-duplicate
