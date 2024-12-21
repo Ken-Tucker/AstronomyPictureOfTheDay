@@ -20,6 +20,8 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Title>Astronomy Picture Of The Day</Title>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>D:\AstronomyPictureOfTheDay\AstronomyPictureOfTheDay.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
