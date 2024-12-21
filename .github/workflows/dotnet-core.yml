@@ -18,8 +18,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        # We must fetch at least the immediate parents so that if this is
-        # a pull request then we can checkout the head.
         fetch-depth: 0
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
@@ -39,7 +37,7 @@ jobs:
     - name: Install dependencies
       run: msbuild ${{env.solution}} -t:restore
     - name: Build
-      run: msbuild ${{env.caliburn_sln}} /t:Build /p:Configuration=Release
+      run: msbuild ${{env.solution}} /t:Build /p:Configuration=Release
     - name: Test
       run: dotnet test --configuration Release -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal    
     - name: Create Test Coverage Badge
