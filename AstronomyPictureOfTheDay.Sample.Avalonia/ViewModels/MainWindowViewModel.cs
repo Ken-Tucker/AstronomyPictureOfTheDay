@@ -10,7 +10,7 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
     {
         private readonly INasaPictureOfTheDay _apod;
         private MarsPictureResponse _marsPictureResponse;
-        private readonly DispatcherTimer _disTimer = new DispatcherTimer();
+        private readonly DispatcherTimer _dispatcherTimer = new DispatcherTimer();
         public MainWindowViewModel(INasaPictureOfTheDay nasaPictureOfTheDay)
         {
             _apod = nasaPictureOfTheDay;
@@ -20,8 +20,8 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
             _marsPictureResponse = new MarsPictureResponse();
             var getPictureTask = Task.Run(async () => await GetPictureOfTheDay());
             getPictureTask.Wait();
-            _disTimer.Interval = TimeSpan.FromSeconds(3);
-            _disTimer.Tick += (sender, e) => CameraIndex++;
+            _dispatcherTimer.Interval = TimeSpan.FromSeconds(3);
+            _dispatcherTimer.Tick += (sender, e) => CameraIndex++;
         }
 
         private const string LoadImage = "Loading image";
@@ -75,7 +75,7 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
 
         public async Task<bool> GetPictureOfTheDay()
         {
-            _disTimer.Stop();
+            _dispatcherTimer.Stop();
             bool result = false;
             PictureOfTheDayResponse response = await _apod.GetTodaysPictureAsync("DEMO_KEY");
             if (response != null && response.Success)
@@ -122,7 +122,7 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
                 _marsPictureResponse = response;
                 CameraIndex = 0;
                 result = true;
-                _disTimer.Start();
+                _dispatcherTimer.Start();
             }
             else
             {
