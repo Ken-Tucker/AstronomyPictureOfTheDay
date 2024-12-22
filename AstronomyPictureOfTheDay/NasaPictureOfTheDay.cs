@@ -7,7 +7,9 @@ namespace AstronomyPictureOfTheDay
 {
     public class NasaPictureOfTheDay : INasaPictureOfTheDay
     {
-        readonly IRestServiceCaller restServiceCaller;
+        private readonly IRestServiceCaller restServiceCaller;
+        public const string HttpClientFactoryName = "AstronomyPictureOfTheDay";
+        public const string HttpClientFactoryUrl = "https://api.nasa.gov";
 
         public NasaPictureOfTheDay()
         {
@@ -25,11 +27,8 @@ namespace AstronomyPictureOfTheDay
             try
             {
                 string json = await restServiceCaller.GetAPODJsonAsync(apiKey);
-#if NETSTANDARD2_0
-                response.pictureOfTheDay = Newtonsoft.Json.JsonConvert.DeserializeObject<PictureOfTheDay>(json);
-#else
+
                 response.pictureOfTheDay = System.Text.Json.JsonSerializer.Deserialize<PictureOfTheDay>(json);
-#endif
                 response.Success = true;
             }
             catch (HttpRequestException httpEx)
@@ -59,11 +58,8 @@ namespace AstronomyPictureOfTheDay
             try
             {
                 string json = await restServiceCaller.GetMarsPictureJsonAsync(rover.ToString(), earthDate, apiKey);
-#if NETSTANDARD2_0
-                response.picturesFromMars = Newtonsoft.Json.JsonConvert.DeserializeObject<MarsPictures>(json);
-#else
+
                 response.picturesFromMars = System.Text.Json.JsonSerializer.Deserialize<MarsPictures>(json);
-#endif
                 response.Success = true;
             }
             catch (HttpRequestException httpEx)

@@ -20,6 +20,8 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Title>Astronomy Picture Of The Day</Title>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>AstronomyPictureOfTheDay.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,9 +35,13 @@
 		<None Include="docs\readme.md" Pack="True" PackagePath="\" />
 	</ItemGroup>
 	<ItemGroup>
+	  <PackageReference Include="HttpClientFactory" Version="1.0.5" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
 	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	  <PackageReference Include="System.Text.Json" Version="9.0.0" />
 	</ItemGroup>
 </Project>

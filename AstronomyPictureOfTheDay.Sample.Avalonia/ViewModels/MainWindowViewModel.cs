@@ -1,4 +1,5 @@
 ﻿using AstronomyPictureOfTheDay.Entities;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Threading.Tasks;
@@ -7,17 +8,20 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-        private readonly NasaPictureOfTheDay _apod;
+        private readonly INasaPictureOfTheDay _apod;
         private MarsPictureResponse _marsPictureResponse;
-        public MainWindowViewModel()
+        private readonly DispatcherTimer _dispatcherTimer = new DispatcherTimer();
+        public MainWindowViewModel(INasaPictureOfTheDay nasaPictureOfTheDay)
         {
-            _apod = new NasaPictureOfTheDay();
+            _apod = nasaPictureOfTheDay;
             LoadMarsPictureCommand = new AsyncRelayCommand(LoadMarsPicture);
             LoadPictureCommand = new AsyncRelayCommand(LoadPicture);
             _picOfDay = "";
             _marsPictureResponse = new MarsPictureResponse();
             var getPictureTask = Task.Run(async () => await GetPictureOfTheDay());
             getPictureTask.Wait();
+            _dispatcherTimer.Interval = TimeSpan.FromSeconds(3);
+            _dispatcherTimer.Tick += (sender, e) => CameraIndex++;
         }
 
         private const string LoadImage = "Loading image";
@@ -71,6 +75,7 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
 
         public async Task<bool> GetPictureOfTheDay()
         {
+            _dispatcherTimer.Stop();
             bool result = false;
             PictureOfTheDayResponse response = await _apod.GetTodaysPictureAsync("DEMO_KEY");
             if (response != null && response.Success)
@@ -101,7 +106,7 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
                 {
                     _cameraIndex = value >= _marsPictureResponse.picturesFromMars.photos.Length ? 0 : value;
 
-                    Title = _marsPictureResponse.picturesFromMars.photos[_cameraIndex].camera.full_name;
+                    Title = $"{_marsPictureResponse.picturesFromMars.photos[_cameraIndex].camera.full_name} pic {value + 1} of {_marsPictureResponse.picturesFromMars.photos.Length}";
                     PictureOfDay = _marsPictureResponse.picturesFromMars.photos[_cameraIndex].img_src;
 
                     OnPropertyChanged();
@@ -114,13 +119,10 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
             MarsPictureResponse response = await _apod.GetMarsPictureAsync(RoverEnum.Perseverance, DateTime.Now.AddDays(-30), "DEMO_KEY");
             if (response != null && response.Success && response.picturesFromMars.photos != null && response.picturesFromMars.photos.Length > 0)
             {
-                if (CameraIndex >= response.picturesFromMars.photos.Length)
-                {
-                    CameraIndex = 0;
-                }
                 _marsPictureResponse = response;
-                CameraIndex = 1;
+                CameraIndex = 0;
                 result = true;
+                _dispatcherTimer.Start();
             }
             else
             {
