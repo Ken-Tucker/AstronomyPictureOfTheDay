@@ -40,20 +40,6 @@ jobs:
       run: msbuild ${{env.solution}} /t:Build /p:Configuration=Release
     - name: Test
       run: dotnet test --configuration Release -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal    
-    - name: Create Test Coverage Badge
-      uses: simon-k/dotnet-code-coverage-badge@v1.0.0
-      id: create_coverage_badge
-      with:
-        label: Unit Test Coverage
-        color: brightgreen
-        path: AstronomyPictureOfTheDay.Xunit.Tests/TestResults/coverage.opencover.xml
-        gist-filename: nasa-code-coverage.json
-        gist-id: 870c49615ed7c8b1af25a0f5f0d8f7a4
-        gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
-    - name: Print code coverage
-      run: echo "Code coverage percentage ${{steps.create_coverage_badge.outputs.percentage}}%"
-    - name: Print badge data
-      run: echo "Badge data ${{steps.create_coverage_badge.outputs.badge}}"
 
        
     - name: pack Nuget Packages
