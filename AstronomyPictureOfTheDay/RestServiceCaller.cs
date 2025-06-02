@@ -25,6 +25,13 @@ namespace AstronomyPictureOfTheDay
             return json;
         }
 
+        public async Task<string> GetAPODByDateJsonAsync(DateTime pictureDate, string apiKey)
+        {
+            string url = $"https://api.nasa.gov/planetary/apod?date={pictureDate:yyyy-MM-dd}&api_key={apiKey}";
+            string json = await client.GetStringAsync(url);
+            return json;
+        }
+
         public async Task<string> GetMarsPictureJsonAsync(string rover, DateTime earthDate, string apiKey)
         {
             string url = $"https://api.nasa.gov/mars-photos/api/v1/rovers/{rover}/photos?earth_date={earthDate:yyyy-MM-dd}&api_key={apiKey}";

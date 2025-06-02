@@ -77,7 +77,7 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
         {
             _dispatcherTimer.Stop();
             bool result = false;
-            PictureOfTheDayResponse response = await _apod.GetTodaysPictureAsync("DEMO_KEY");
+            PictureOfTheDayResponse response = await _apod.GetPictureByDateAsync(DateTime.Today, "DEMO_KEY");
             if (response != null && response.Success)
             {
 
