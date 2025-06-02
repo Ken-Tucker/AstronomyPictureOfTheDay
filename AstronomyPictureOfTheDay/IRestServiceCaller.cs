@@ -9,5 +9,6 @@ namespace AstronomyPictureOfTheDay
 
         Task<string> GetMarsPictureJsonAsync(string rover, DateTime earthDate, string apiKey);
 
+        Task<string> GetAPODByDateJsonAsync(DateTime pictureDate, string apiKey);
     }
 }

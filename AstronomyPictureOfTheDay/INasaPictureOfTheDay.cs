@@ -8,5 +8,6 @@ namespace AstronomyPictureOfTheDay
     {
         Task<MarsPictureResponse> GetMarsPictureAsync(RoverEnum rover, DateTime earthDate, string apiKey);
         Task<PictureOfTheDayResponse> GetTodaysPictureAsync(string apiKey);
+        Task<PictureOfTheDayResponse> GetPictureByDateAsync(DateTime pictureDate, string apiKey);
     }
 }

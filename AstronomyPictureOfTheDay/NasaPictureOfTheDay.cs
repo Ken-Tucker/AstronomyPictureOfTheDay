@@ -83,5 +83,36 @@ namespace AstronomyPictureOfTheDay
 
             return response;
         }
+
+        public async Task<PictureOfTheDayResponse> GetPictureByDateAsync(DateTime pictureDate, string apiKey)
+        {
+            PictureOfTheDayResponse response = new PictureOfTheDayResponse();
+            try
+            {
+                string json = await restServiceCaller.GetAPODByDateJsonAsync(pictureDate, apiKey);
+
+                response.pictureOfTheDay = System.Text.Json.JsonSerializer.Deserialize<PictureOfTheDay>(json);
+                response.Success = true;
+            }
+            catch (HttpRequestException httpEx)
+            {
+                response.Success = false;
+                response.exception = httpEx;
+                response.CanRetry = true;
+            }
+            catch (TaskCanceledException taskCancelException)
+            {
+                response.Success = false;
+                response.exception = taskCancelException;
+                response.CanRetry = true;
+            }
+            catch (InvalidOperationException invalidOpException)
+            {
+                response.Success = false;
+                response.exception = invalidOpException;
+            }
+
+            return response;
+        }
     }
 }
