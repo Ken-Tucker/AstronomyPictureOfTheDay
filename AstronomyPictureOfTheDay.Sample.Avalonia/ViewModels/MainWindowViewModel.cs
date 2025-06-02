@@ -76,14 +76,13 @@ namespace AstronomyPictureOfTheDay.Sample.Avalonia.ViewModels
         public async Task<bool> GetPictureOfTheDay()
         {
             _dispatcherTimer.Stop();
-            bool result = false;
             PictureOfTheDayResponse response = await _apod.GetPictureByDateAsync(DateTime.Today, "DEMO_KEY");
+            bool result = response?.Success == true;
             if (response != null && response.Success)
             {
 
                 Title = response.pictureOfTheDay.title;
                 PictureOfDay = response.pictureOfTheDay.url;
-                result = true;
             }
             else
             {
