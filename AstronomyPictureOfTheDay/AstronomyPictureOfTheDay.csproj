@@ -29,19 +29,20 @@
 	</PropertyGroup>
 	
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="docs\readme.md" Pack="True" PackagePath="\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="HttpClientFactory" Version="1.0.5" />
-	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.10" />
-	  <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.10" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.0" />
 	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	  <PackageReference Include="System.Net.Http" Version="4.3.4" />
 	  <PackageReference Include="System.Text.Json" Version="10.0.0" />
 	  <PackageReference Include="Microsoft.Sbom.Targets" Version="4.1.4">
 		  <PrivateAssets>all</PrivateAssets>
