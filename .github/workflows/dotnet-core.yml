@@ -12,17 +12,17 @@ env:
 jobs:
   build:
 
-    runs-on: 'windows-2022'
+    runs-on: 'windows-2025'
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v2
     
@@ -51,7 +51,7 @@ jobs:
 
 
     - name: Upload Packages Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: published_nuget
         path: ${{env.nuget_folder}}
