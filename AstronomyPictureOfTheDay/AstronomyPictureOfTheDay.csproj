@@ -36,8 +36,8 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="HttpClientFactory" Version="1.0.5" />
-	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.6" />
-	  <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.5" />
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.7" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.7" />
 	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.201">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
